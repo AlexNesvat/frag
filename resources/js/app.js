@@ -20,3 +20,14 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 const app = new Vue({
     el: '#app'
 });
+
+
+/**
+ * Left-Sidebar
+ *
+ */
+Vue.component('left-sidebar', require('./components/LeftSidebar.vue'));
+
+const sidebar = new Vue({
+    el: '#left-sidebar'
+});
