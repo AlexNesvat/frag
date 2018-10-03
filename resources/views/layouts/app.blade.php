@@ -20,15 +20,12 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-<div id="admin-wrapper">
-    <div id="left-sidebar">
-        @yield('left-sidebar')
-    </div>
-    <div id="app">
+<div id="app">
+    <admin></admin>
 
 
 
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+      {{--  <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -77,15 +74,25 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav>--}}
 
 
 
 
         @yield('content')
 
-        @yield('vue-content')
-    </div>
+
+
+
+
+
+
+        @yield('admin-content')
+
+
+
+
+
 </div>
 </body>
 </html>
