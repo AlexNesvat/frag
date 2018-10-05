@@ -15,13 +15,12 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('admin', require('./components/Admin.vue'));
-//Vue.component('left-sidebar', require('./components/LeftSidebar.vue'));
+Vue.component('main-section', require('./components/MainSection.vue'));
+
 
 const app = new Vue({
     el: '#app',
-    // components: {
-    //     'component-a': ComponentA,
-    //     'component-b': ComponentB
-    // }
+    data: {
+        posts: ''
+    }
 });

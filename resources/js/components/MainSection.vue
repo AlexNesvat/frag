@@ -1,121 +1,103 @@
 <template>
-    <div class="main">
-        <nav class="navbar navbar-expand navbar-light bg-white">
-            <a href="" class="sidebar-toggle d-flex mr-2"></a>
-            <form action="" class="form-inline d-none d-sm-inline-block">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search projects" aria-label="Search">
-            </form>
-        </nav>
-    </div>
+   <div class="table">
+       <div class="table-head">
+          <!-- <h1 v-if="ok">Да</h1>
+           <h1 v-else>Нет</h1>
+           <h1 v-show="ok">Привет!</h1>
+
+inheritAttrs
+model
+props/propsData
+Локальное состояние (локальные реактивные свойства)
+
+data
+computed
+События (коллбэки вызываемые реактивными событиями)
+
+watch
+События хуков жизненного цикла (в порядке их вызова)
+beforeCreate
+created
+beforeMount
+mounted
+beforeUpdate
+updated
+activated
+deactivated
+beforeDestroy
+destroyed
+
+
+
+
+<li v-for="n in even(numbers)">{{ n }}</li>
+data: {
+  numbers: [ 1, 2, 3, 4, 5 ]
+},
+methods: {
+  even: function (numbers) {
+    return numbers.filter(function (number) {
+      return number % 2 === 0
+    })
+  }
+}
+
+           -->
+           <div class="table-head-col">User ID</div>
+           <div class="table-head-col"></div>
+           <div class="table-head-col"></div>
+           <div class="table-head-col"></div>
+       </div>
+       <div class="table-body">
+           <div class="table-body-row"
+                v-for="post in posts"
+                v-bind:key="post.id">
+
+               <div class="table-body-col">{{post.id}}<a href="">{{post.title}}</a></div>
+
+           </div>
+           <div class="table-body-row">
+               <div class="table-body-col"></div>
+               <div class="table-body-col"></div>
+               <div class="table-body-col"></div>
+               <div class="table-body-col"></div>
+           </div>
+           <div class="table-body-row">
+               <div class="table-body-col"></div>
+               <div class="table-body-col"></div>
+               <div class="table-body-col"></div>
+               <div class="table-body-col"></div>
+           </div>
+           <div class="table-body-row">
+               <div class="table-body-col"></div>
+               <div class="table-body-col"></div>
+               <div class="table-body-col"></div>
+               <div class="table-body-col"></div>
+           </div>
+       </div>
+   </div>
 </template>
 
 <script>
     export default {
+        data() {
+            return {
+                posts: []
+            };
+        },
         mounted() {
-            console.log('Component mounted. main')
-        }
+            var vm = this
+            fetch('https://jsonplaceholder.typicode.com/posts')
+                .then(function (response) {
+                    return response.json()
+                })
+                .then(function (data) {
+                    vm.posts = data
+                })
+        },
     }
 </script>
 
-<style>
-    .main {
-        width: 100%;
-    }
-
-    .navbar {
-        border-bottom: 1px solid #dee2e6;
-        box-shadow: 0 0.05rem 0.2rem rgba(0,0,0,.05);
-    }
-
-    .bg-white {
-        background-color: #fff!important;
-    }
-    .navbar-expand {
-        -ms-flex-flow: row nowrap;
-        -ms-flex-pack: start;
-        flex-flow: row nowrap;
-        justify-content: flex-start;
-    }
-    .navbar, .navbar>.container, .navbar>.container-fluid {
-        -ms-flex-align: center;
-        -ms-flex-pack: justify;
-        -ms-flex-wrap: wrap;
-        align-items: center;
-        display: -ms-flexbox;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-    .navbar {
-        padding: .75rem 1.25rem;
-        position: relative;
-        max-height: 50px;
-        /* max-width: 100%; */
-        width: 100%;
-    }
-    .sidebar-toggle {
-        cursor: pointer;
-        height: 26px;
-        width: 26px;
-    }
-
-    .mr-2, .mx-2 {
-        margin-right: .5rem!important;
-    }
-    .d-flex {
-        display: -ms-flexbox!important;
-        display: flex!important;
-    }
-    a {
-        -webkit-text-decoration-skip: objects;
-        background-color: transparent;
-        color: #0cc2aa;
-        text-decoration: none;
-    }
-    .d-none {
-        display: none!important;
-    }
-
-    .form-inline {
-        -ms-flex-align: center;
-        -ms-flex-flow: row wrap;
-        align-items: center;
-        display: -ms-flexbox;
-        display: flex;
-        flex-flow: row wrap;
-    }
-    @media (min-width: 576px) {
-        .form-inline .form-control {
-            display: inline-block;
-            vertical-align: middle;
-            width: auto;
-        }
-    }
-    @media (min-width: 576px) {
-        .d-sm-inline-block {
-            display: inline-block !important;
-        }
-    }
-
-        @media (min-width: 576px) {
-            .mr-sm-2, .mx-sm-2 {
-                margin-right: .5rem !important;
-            }
-
-            .form-control {
-                background-clip: padding-box;
-                background-color: #fff;
-                border: 1px solid #ced4da;
-                border-radius: .2rem;
-                color: #495057;
-                display: block;
-                font-size: .875rem;
-                height: calc(1.8125rem + 2px);
-                line-height: 1.5;
-                padding: .25rem .7rem;
-                transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-                width: 100%;
-            }
-        }
+<style scoped>
 
 </style>
