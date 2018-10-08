@@ -8,6 +8,8 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import VueRouter from 'vue-router';
+Vue.use(VueRouter);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -16,11 +18,44 @@ window.Vue = require('vue');
  */
 
 Vue.component('main-section', require('./components/MainSection.vue'));
+Vue.component('user-detail', require('./components/UserDetail.vue'));
 
+import App from './views/App'
+import Users from './views/Users'
+import UserDetail from './views/UserDetail'
+
+// const UserDetail = { props: ['id'], template: 'user-detail' }
+// const MainSection = { template: 'main-section' }
+// const Route2 = { template: '<div>This is router user</div>' }
+
+
+const routes = [
+    {
+    path: '/admin/user/:id',
+    name:'user-detail',
+    component: UserDetail,
+    props: true
+    },
+    {
+        path: '/admin/users/',
+        name:'users',
+        component: Users,
+    },
+    // { path: '/admin/user',name:'user.detail',component: UserInfo, props: true},
+    // { path: '/admin/user/',component: Route2 },
+    // { path: '/products',component: Route2},
+    // { path: '/about'}
+];
+const router = new VueRouter({
+    mode: 'history',
+    routes: routes
+});
 
 const app = new Vue({
     el: '#app',
+    components: {App},
+    router: router,
     data: {
-        posts: ''
+        users: ''
     }
 });

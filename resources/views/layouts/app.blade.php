@@ -48,7 +48,8 @@
         </nav>
         <div id="app">
 
-            <main-section></main-section>
+            @yield('section')
+
         </div>
     </div>
 

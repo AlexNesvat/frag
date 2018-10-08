@@ -49,14 +49,25 @@ methods: {
            <div class="table-head-col"></div>
        </div>
        <div class="table-body">
-           <div class="table-body-row"
-                v-for="post in posts"
-                v-bind:key="post.id">
+           <!--<div class="table-body-row"-->
+                <!--v-for="user in users"-->
+                <!--v-bind:key="user.id">-->
 
-               <div class="table-body-col">{{post.id}}<a href="">{{post.title}}</a></div>
+               <!--<div class="table-body-col">{{user.id}}</div>-->
+               <!--<div class="table-body-col"><router-link :to="{ name: 'user.detail', params: { id: user.id }}">{{user.name}}</router-link></div>-->
+               <!--<div class="table-body-col"><router-link :to="{ name: 'main-section'}">{{user.name}}</router-link></div>-->
+               <!--<router-view></router-view>-->
+               <!--&lt;!&ndash;<div class="table-body-col"><a v-on:click="router.push({ path: `admin/user/${user.id}` })">{{user.name}}</a></div>&ndash;&gt;-->
 
-           </div>
+               <!--<div class="table-body-col">{{user.email}}</div>-->
+               <!--<div class="table-body-col">{{user.role}}</div>-->
+               <!--<div class="table-body-col">{{user.address}}</div>-->
+
+           <!--</div>-->
            <div class="table-body-row">
+               <div class="table-body-col"><router-link :to="{ name: 'user.detail', params: { id: user.id }}">{{user.name}}</router-link></div>
+               <div class="table-body-col"><router-link :to="{ name: 'main-section'}">{{user.name}}</router-link></div>
+               <router-view></router-view>
                <div class="table-body-col"></div>
                <div class="table-body-col"></div>
                <div class="table-body-col"></div>
@@ -80,24 +91,50 @@ methods: {
 
 <script>
     export default {
+        // routes: [
+        //     { path: 'admin/user/', name: 'user', params: { id: user.id}},
+        //
+        // ],
         data() {
             return {
-                posts: []
+                users: []
             };
         },
-        mounted() {
+        created(){
             var vm = this
-            fetch('https://jsonplaceholder.typicode.com/posts')
+            fetch('admin/users')
                 .then(function (response) {
                     return response.json()
                 })
                 .then(function (data) {
-                    vm.posts = data
+                    vm.users = data
                 })
+        },
+        mounted() {
+
         },
     }
 </script>
 
 <style scoped>
+    .table-body-row{
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-content: center;
+        width: 100%;
+        border-top: 1px solid grey;
+    }
+    .table-body-col{
+        padding: 5px;
+        align-self: stretch;
 
+    }
+    .table{
+        background: white;
+    }
+    .table-body {
+        display: flex;
+        flex-wrap: wrap;
+    }
 </style>
