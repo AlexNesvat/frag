@@ -14351,7 +14351,11 @@ var routes = [{
     component: __WEBPACK_IMPORTED_MODULE_3__views_UserDetail___default.a,
     props: true
 }, {
-    path: '/admin/users/',
+    path: '/admin/users',
+    name: 'users',
+    component: __WEBPACK_IMPORTED_MODULE_2__views_Users___default.a
+}, {
+    path: '/admin',
     name: 'users',
     component: __WEBPACK_IMPORTED_MODULE_2__views_Users___default.a
 }];
@@ -50458,39 +50462,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     // routes: [
@@ -50504,7 +50475,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     created: function created() {
         var vm = this;
-        fetch('admin/users').then(function (response) {
+        fetch('api/admin/users').then(function (response) {
             return response.json();
         }).then(function (data) {
             vm.users = data;
@@ -50557,22 +50528,10 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("router-view"),
-          _vm._v(" "),
-          _c("div", { staticClass: "table-body-col" }),
-          _vm._v(" "),
-          _c("div", { staticClass: "table-body-col" }),
-          _vm._v(" "),
-          _c("div", { staticClass: "table-body-col" }),
-          _vm._v(" "),
-          _c("div", { staticClass: "table-body-col" })
+          _c("router-view")
         ],
         1
-      ),
-      _vm._v(" "),
-      _vm._m(1),
-      _vm._v(" "),
-      _vm._m(2)
+      )
     ])
   ])
 }
@@ -50582,41 +50541,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "table-head" }, [
-      _c("div", { staticClass: "table-head-col" }, [_vm._v("User ID")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "table-head-col" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "table-head-col" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "table-head-col" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "table-body-row" }, [
-      _c("div", { staticClass: "table-body-col" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "table-body-col" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "table-body-col" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "table-body-col" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "table-body-row" }, [
-      _c("div", { staticClass: "table-body-col" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "table-body-col" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "table-body-col" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "table-body-col" })
+      _c("div", { staticClass: "table-head-col" }, [_vm._v("User ID")])
     ])
   }
 ]

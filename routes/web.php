@@ -22,7 +22,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Route::get('/admin', 'AdminController@index')->name('admin');
-Route::get('/admin/users', 'AdminController@users')->name('users');
+Route::get('/admin', 'AdminController@index')->name('admin');
+//Route::get('/admin/users', 'AdminController@users')->name('users');
 //Route::get('/admin/user/{id}', 'AdminController@user')->name('user');
-Route::get('/admin/{any}', 'AdminController@index')->where('any', '.*');
+//Route::get('/admin/{any}', 'AdminController@index')->where('any', '.*');

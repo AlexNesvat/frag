@@ -21,9 +21,9 @@ class AdminController extends Controller
 
         return json_encode($users);
     }
-//    public function user($id){
-//        $user = User::findOrFail($id);
-//        //return $user;
-//        return view('admin.user', $user);
-//    }
+    public function user($id){
+        $user = User::findOrFail($id);
+        //return $user;
+        return view('admin.user', $user);
+    }
 }

@@ -31,13 +31,18 @@ import UserDetail from './views/UserDetail'
 
 const routes = [
     {
-    path: '/admin/user/:id',
-    name:'user-detail',
-    component: UserDetail,
-    props: true
+        path: '/admin/user/:id',
+        name:'user-detail',
+        component: UserDetail,
+        props: true
     },
     {
-        path: '/admin/users/',
+        path: '/admin/users',
+        name:'users',
+        component: Users,
+    },
+    {
+        path: '/admin',
         name:'users',
         component: Users,
     },
