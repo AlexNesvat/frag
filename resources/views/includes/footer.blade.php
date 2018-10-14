@@ -50,6 +50,8 @@
 <script src="{{ asset('js/jcf.radio.js') }}"></script>
 <script src="{{ asset('js/jquery.animateNumber.min.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
+<!-- production version, optimized for size and speed -->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </body>
 
 </html>
