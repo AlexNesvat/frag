@@ -28,8 +28,8 @@
         <a href="" class="sidebar-brand"></a>
 
         <ul class="sidebar-nav">
-            <li class="sidebar-item"><a href="" class="sidebar-link"><span class="align-middle">Dashboard</span></a></li>
-            <li class="sidebar-item"><a href="" class="sidebar-link"><span class="align-middle">Products</span></a></li>
+            <li class="sidebar-item"><a href="/admin" class="sidebar-link"><span class="align-middle">Dashboard</span></a></li>
+            <li class="sidebar-item"><a href="/admin/products" class="sidebar-link"><span class="align-middle">Products</span></a></li>
             <li class="sidebar-item"><a href="" class="sidebar-link"><span class="align-middle">Orders</span></a></li>
             <li class="sidebar-item"><a href="" class="sidebar-link"><span class="align-middle">Subscriptions</span></a></li>
             <li class="sidebar-item"><a href="" class="sidebar-link"><span class="align-middle">Customers</span></a></li>
