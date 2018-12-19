@@ -26,7 +26,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.products');
     }
 
     /**
@@ -37,7 +37,7 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**
@@ -60,7 +60,7 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.products', ['product' => Product::findOrFail($id)]);
+        return view('admin.products', ['product_detail' => Product::findOrFail($id)]);
     }
 
     /**
@@ -72,7 +72,25 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //should be unique sku (name?)
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'sku' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+        ]);
+
+     //   dd($validatedData);
+        $product = Product::find($id);
+
+        $product->name = $validatedData['name'];
+        $product->sku = $validatedData['sku'];
+        $product->description = $validatedData['description'];
+        $product->price = $validatedData['price'];
+
+        $product->save();
+
+        return view('admin.products', ['product_detail' => Product::findOrFail($id)]);
     }
 
     /**
@@ -83,6 +101,7 @@ class ProductsController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        dd('delete route');
+        return redirect()->route('products');
     }
 }
