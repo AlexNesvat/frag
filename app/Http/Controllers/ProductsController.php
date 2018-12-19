@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
+
 class ProductsController extends Controller
 {
     /**
@@ -14,8 +15,8 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $all_products = new Product()->;
-        return view('admin.products')->with($all_products);
+        $all_products = Product::paginate(5);
+        return view('admin.products')->with('products',$all_products);
     }
 
     /**
@@ -42,12 +43,13 @@ class ProductsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Product  $product
+     * @param  \App\Models\Product  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($id)
     {
-        //
+        //dd($id);
+        //return view('admin.products', ['product' => Product::findOrFail($id)]);
     }
 
     /**
@@ -56,9 +58,9 @@ class ProductsController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        //
+        return view('admin.products', ['product' => Product::findOrFail($id)]);
     }
 
     /**
@@ -68,7 +70,7 @@ class ProductsController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
         //
     }
