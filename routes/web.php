@@ -20,14 +20,24 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin', 'AdminController@index')->name('admin');
+
 Route::get('/admin/products', 'ProductsController@index')->name('products');
-Route::get('/admin/product/{id}', 'ProductsController@edit')->name('product');
 Route::get('/admin/product/create', 'ProductsController@create')->name('create.product');
-Route::post('/admin/product', 'ProductsController@store')->name('store.product');
+//Route::get('/admin/product/create', function () {
+//    dd('fsdfsdfs');
+//    return view('admin.products');
+//});
+Route::get('/admin/product/{id}', 'ProductsController@edit')->name('product');
+
+
+Route::post('/admin/product/', 'ProductsController@store')->name('store.product');
 Route::put('/admin/product/{id}', 'ProductsController@update')->name('edit.product');
+
+
 
 
 

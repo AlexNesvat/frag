@@ -37,7 +37,29 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        //should be unique sku (name?)
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'sku' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+        ]);
+
+      //  dd($request);
+
+        $product = new Product;
+
+        $product->name = $validatedData['name'];
+        $product->sku = $validatedData['sku'];
+        $product->description = $validatedData['description'];
+        $product->price = $validatedData['price'];
+        $product->active = $request->get('active') ? true : false;
+        $product->subscribe = $request->get('subscribe') ? true : false;
+
+        $product->save();
+
+        return redirect()->route('products');
+
     }
 
     /**
@@ -87,6 +109,8 @@ class ProductsController extends Controller
         $product->sku = $validatedData['sku'];
         $product->description = $validatedData['description'];
         $product->price = $validatedData['price'];
+        $product->active = $request->get('active') ? true : false;
+        $product->subscribe = $request->get('subscribe') ? true : false;
 
         $product->save();
 

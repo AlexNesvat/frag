@@ -24,23 +24,27 @@
     </table>
 
     {{ $products->render() }}
-    <a href="{{ route( 'create.product' ) }}">CREATE</a>
+    <a href="{{ route('create.product') }}">CREATE</a>
+    @endif
 
-    @else
+
+    @if (\Route::current()->getName() === 'create.product')
         {!! Form::open(['route' => ['store.product' ],'method' => 'post' ]) !!}
 
         {!! Form::text('name', ''); !!}
         {!! Form::text('sku', ''); !!}
         {!! Form::textarea('description', ''); !!}
         {!! Form::number('price', ''); !!}
-        {!! Form::checkbox('active', '', false); !!}
-        {!! Form::checkbox('subscribe','' , false); !!}
+        {!! Form::checkbox('active', 'value'); !!}
+        {!! Form::checkbox('subscribe', 'value'); !!}
         {!! Form::submit('Save'); !!}
 
         {!! Form::close() !!}
-
-
     @endif
+
+
+
+
 
 
 
@@ -54,8 +58,8 @@
     {!! Form::text('sku', $product_detail['sku']); !!}
     {!! Form::textarea('description', $product_detail['description']); !!}
     {!! Form::number('price', $product_detail['price']); !!}
-    {!! Form::checkbox('active', $product_detail['active'], $product_detail['active'] ? true : false); !!}
-    {!! Form::checkbox('subscribe', $product_detail['subscribe'], $product_detail['subscribe'] ? true : false); !!}
+    {!! Form::checkbox('active', 'value', $product_detail['active'] ? true : false); !!}
+    {!! Form::checkbox('subscribe', 'value', $product_detail['subscribe'] ? true : false); !!}
     {!! Form::submit('Update'); !!}
 
     {!! Form::close() !!}
