@@ -4,6 +4,7 @@
     @if(isset($products))
     {{ $products->total() }}
     <table class="table">
+
     @foreach($products as $product)
         <tr>
             <td><a href="{{ route( 'product', ['id' => $product['id'] ] ) }}">{{$product['name']}}</a></td>
@@ -11,16 +12,10 @@
             <td>{{$product['description']}}</td>
             <td>{{$product['price']}}</td>
             <td>{{$product['active']}}</td>
-
-
-
-
-
-
         </tr>
 
-
     @endforeach
+
     </table>
 
     {{ $products->render() }}
@@ -43,14 +38,8 @@
     @endif
 
 
-
-
-
-
-
     @if(isset($product_detail))
-    {{$product_detail}}
-
+    {{--{{$product_detail}}--}}
 
     {!! Form::open(['route' => ['edit.product', $product_detail['id']],'method' => 'put' ]) !!}
 

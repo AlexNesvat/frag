@@ -64,9 +64,12 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
-        Schema::dropIfExists('attributes');
-        Schema::dropIfExists('attribute_values');
         Schema::dropIfExists('product_attribute');
+        Schema::dropIfExists('attribute_values');
+        Schema::dropIfExists('attributes');
+        Schema::dropIfExists('products');
+
+
+
     }
 }

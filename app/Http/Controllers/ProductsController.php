@@ -70,6 +70,8 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
+        //TODO generate template to show product preview
+
         //dd($id);
         //return view('admin.products', ['product' => Product::findOrFail($id)]);
     }
@@ -77,7 +79,7 @@ class ProductsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Product  $product
+     * @param  \App\Models\Product $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -89,7 +91,7 @@ class ProductsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Product  $product
+     * @param  \App\Models\Product  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -120,7 +122,7 @@ class ProductsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Product  $product
+     * @param  \App\Models\Product $product
      * @return \Illuminate\Http\Response
      */
     public function destroy(Product $product)
