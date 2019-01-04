@@ -84,7 +84,14 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.products', ['product_detail' => Product::findOrFail($id)]);
+        //$t = Product::findOrFail($id);
+        $t = Product::with('attributes.productAttributes')->where('id','=',$id)->get();
+
+       // dd($t);
+       // $t->load('attributes','value');
+        dd($t);
+       // return view('admin.products', ['product_detail' => Product::with('attributes')->where('id','=',$id)->get()]);
+        return view('admin.products', ['product_detail' => Product::findOrFail($id)->with('attributes')]);
     }
 
     /**

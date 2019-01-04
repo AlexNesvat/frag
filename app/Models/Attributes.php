@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Attributes extends Model
 {
-    public function productAttribute(){
-        return $this->belongsTo('App\Models\ProductAttribute','attribute_id','id');
+    public function productAttributes(){
+        return $this->belongsToMany('App\Models\ProductAttribute','product_attributes','attribute_id','product_id');
     }
 
-    public function value(){
+    public function attributeValue(){
         return $this->hasMany('App\Models\AttributeValue','attribute_id','id');
     }
 }

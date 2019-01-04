@@ -39,7 +39,9 @@
 
 
     @if(isset($product_detail))
-    {{--{{$product_detail}}--}}
+    {{dd($product_detail)}}
+
+
 
     {!! Form::open(['route' => ['edit.product', $product_detail['id']],'method' => 'put' ]) !!}
 
