@@ -85,10 +85,13 @@ class ProductsController extends Controller
     public function edit($id)
     {
         //$t = Product::findOrFail($id);
-        $t = Product::with(/*[*/'attributes'/*,'attributes.productAttributes','attributes.productAttributes.attributeValue']*/)->find($id);/*->where('id','=',$id)->get();*/
+        //$t = Product::with('attributes','attributes.productAttributes','attributes.productAttributes.attributeValue')->where('id','=',$id)->get();
 
-        $t->load('attributes.productAttributes');
-        $t->load('attributes.productAttributes.attributeValue');
+        $t = Product::with('attributes.productAttributes.attributeValue')->where('id','=',$id)->get();
+       // $t = Product::find($id)->attributes()->productAttributes()->attributeValue;
+
+        //$t->load('attributes.productAttributes');
+        //$t->load('attributes.productAttributes.attributeValue');
        // dd($t);
        // $t->load('attributes','value');
         //dd($t);
