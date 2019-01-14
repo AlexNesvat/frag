@@ -87,7 +87,7 @@ class ProductsController extends Controller
         //$t = Product::findOrFail($id);
         //$t = Product::with('attributes','attributes.productAttributes','attributes.productAttributes.attributeValue')->where('id','=',$id)->get();
 
-        $t = Product::with('attributes.productAttributes.attributeValue')->where('id','=',$id)->get();
+        $product_with_attributes = Product::with('attributes.productAttributes.attributeValue')->where('id','=',$id)->get();
        // $t = Product::find($id)->attributes()->productAttributes()->attributeValue;
 
         //$t->load('attributes.productAttributes');
@@ -96,7 +96,7 @@ class ProductsController extends Controller
        // $t->load('attributes','value');
         //dd($t);
        // return view('admin.products', ['product_detail' => Product::with('attributes')->where('id','=',$id)->get()]);
-        return view('admin.products', ['product_detail' => $t/*Product::findOrFail($id)->with('attributes')*/]);
+        return view('admin.products', ['product_detail' => $product_with_attributes]);
     }
 
     /**
