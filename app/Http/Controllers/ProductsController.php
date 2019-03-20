@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateProductRequest;
 
 
 class ProductsController extends Controller
@@ -32,31 +33,32 @@ class ProductsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param CreateProductRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateProductRequest $request)
     {
         //should be unique sku (name?)
-        $validatedData = $request->validate([
-            'name' => 'required|max:255',
-            'sku' => 'required',
-            'description' => 'required',
-            'price' => 'required',
-        ]);
+//        $validatedData = $request->validate([
+//            'name' => 'required|max:255',
+//            'sku' => 'required',
+//            'description' => 'required',
+//            'price' => 'required',
+//        ]);
 
       //  dd($request);
+        Product::create($request->all());
 
-        $product = new Product;
+     //   $product = new Product;
 
-        $product->name = $validatedData['name'];
-        $product->sku = $validatedData['sku'];
-        $product->description = $validatedData['description'];
-        $product->price = $validatedData['price'];
-        $product->active = $request->get('active') ? true : false;
-        $product->subscribe = $request->get('subscribe') ? true : false;
-
-        $product->save();
+//        $product->name = $validatedData['name'];
+//        $product->sku = $validatedData['sku'];
+//        $product->description = $validatedData['description'];
+//        $product->price = $validatedData['price'];
+//        $product->active = $request->get('active') ? true : false;
+//        $product->subscribe = $request->get('subscribe') ? true : false;
+//
+//        $product->save();
 
         return redirect()->route('products');
 
