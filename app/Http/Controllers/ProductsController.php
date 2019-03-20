@@ -16,7 +16,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $all_products = Product::paginate(5);
+        $all_products = Product::paginate(5)->toArray();
         return view('admin.products')->with('products',$all_products);
     }
 
@@ -89,7 +89,7 @@ class ProductsController extends Controller
         //$t = Product::findOrFail($id);
         //$t = Product::with('attributes','attributes.productAttributes','attributes.productAttributes.attributeValue')->where('id','=',$id)->get();
 
-        $product_with_attributes = Product::with('attributes.productAttributes.attributeValue')->where('id','=',$id)->get();
+        $product_with_attributes = Product::with('attributes.productAttributes.attributeValue')->where('id','=',$id)->get()->toArray();
        // $t = Product::find($id)->attributes()->productAttributes()->attributeValue;
 
         //$t->load('attributes.productAttributes');
@@ -98,7 +98,7 @@ class ProductsController extends Controller
        // $t->load('attributes','value');
         //dd($t);
        // return view('admin.products', ['product_detail' => Product::with('attributes')->where('id','=',$id)->get()]);
-        return view('admin.products', ['product_detail' => $product_with_attributes]);
+        return view('admin.products')->with(['product_detail' => $product_with_attributes[0]]);
     }
 
     /**
@@ -130,7 +130,7 @@ class ProductsController extends Controller
 
         $product->save();
 
-        return view('admin.products', ['product_detail' => Product::findOrFail($id)]);
+        return view('admin.products')->with(['product_detail' => Product::findOrFail($id)]);
     }
 
     /**
