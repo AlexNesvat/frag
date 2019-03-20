@@ -46,6 +46,8 @@ Route::delete('/admin/product/{id}', 'ProductsController@destroy')->name('delete
 //Route::resource('products', 'ProductsController');
 
 
+
+
 //Route::get('/admin/users', 'AdminController@users')->name('users');
 //Route::get('/admin/user/{id}', 'AdminController@user')->name('user');
 //Route::get('/admin/{any}', 'AdminController@index')->where('any', '.*');
