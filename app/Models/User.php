@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-
 use Laravel\Cashier\Billable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
