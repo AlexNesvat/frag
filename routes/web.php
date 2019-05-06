@@ -43,9 +43,15 @@ Route::put('/admin/products/{id}', 'ProductsController@update')->name('edit.prod
 
 Route::delete('/admin/products/{id}', 'ProductsController@destroy')->name('delete.product');
 
+Route::get('/checkout', ['as'=>'checkout','uses'=>'CashierSubscriptionController@index']);
+Route::post('/payment',['as'=>'payment','uses'=>'CashierSubscriptionController@userPayForSubscription']);
+
 //Route::resource('products', 'ProductsController');
 
-
+//Route::post(
+//    'stripe/webhook',
+//    '\Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook'
+//);
 
 
 //Route::get('/admin/users', 'AdminController@users')->name('users');
