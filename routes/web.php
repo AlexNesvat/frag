@@ -20,33 +20,39 @@ Route::get('/', function () {
 
 Auth::routes();
 
-
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/admin', 'AdminController@index')->name('admin');
 
-Route::get('/admin/products', 'ProductsController@index')->name('products');
-Route::get('/admin/products/create', 'ProductsController@create')->name('create.product');
-//Route::get('/admin/product/create', function () {
-//    dd('fsdfsdfs');
-//    return view('admin.products');
-//});
-Route::get('/admin/products/{id}', 'ProductsController@edit')->name('product');
-
-
-Route::post('/admin/products/', 'ProductsController@store')->name('store.product');
-Route::put('/admin/products/{id}', 'ProductsController@update')->name('edit.product');
+Route::prefix('admin')->group(function (){
+Route::get('/', 'AdminController@index')->name('admin');
+    Route::resource('products', 'ProductsController');
+});
 
 
 
+//
+//Route::get('/admin/products', 'ProductsController@index')->name('products');
+//Route::get('/admin/products/create', 'ProductsController@create')->name('create.product');
+////Route::get('/admin/product/create', function () {
+////    dd('fsdfsdfs');
+////    return view('admin.products');
+////});
+//Route::get('/admin/products/{id}', 'ProductsController@edit')->name('product');
+//
+//
+//Route::post('/admin/products/', 'ProductsController@store')->name('store.product');
+//Route::put('/admin/products/{id}', 'ProductsController@update')->name('edit.product');
+//
+//Route::delete('/admin/products/{id}', 'ProductsController@destroy')->name('delete.product');
 
 
-Route::delete('/admin/products/{id}', 'ProductsController@destroy')->name('delete.product');
+
+
+
 
 Route::get('/checkout', ['as'=>'checkout','uses'=>'CashierSubscriptionController@index']);
 Route::post('/payment',['as'=>'payment','uses'=>'CashierSubscriptionController@userPayForSubscription']);
 
-//Route::resource('products', 'ProductsController');
 
 //Route::post(
 //    'stripe/webhook',

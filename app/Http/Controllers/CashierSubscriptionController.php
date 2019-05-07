@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Exception;
+use Stripe\Plan;
+use Stripe\Stripe;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -29,8 +31,12 @@ class CashierSubscriptionController extends Controller
         $creditCardToken = $input['stripeToken'];
 
         try {
-            $user->newSubscription('inner_circle', 'primary')->create($creditCardToken, [
+            Stripe::setApiKey(config('services.stripe.secret'));
+            $plans = Plan::all(['limit' => 1]);
+
+            $user->newSubscription($input['plane'], $plans->data[0]->id)->create($creditCardToken, [
                 'email' => $user->email,
+
             ]);
             return back()->with('success', 'Subscription payment complete.');
         } catch (Exception $e) {

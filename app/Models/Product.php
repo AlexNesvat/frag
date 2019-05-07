@@ -11,6 +11,8 @@ class Product extends Model
         'sku',
         'description',
         'price',
+//        'active',
+//        'subscribe',
     ];
     //use softDeletes;
     public function attributes(){

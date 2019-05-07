@@ -16,6 +16,15 @@
                             </div>
                         @endif
 
+                        <div class="form-group" id="product-group">
+                            {!! Form::label('plane', 'Select Plan:') !!}
+                            {!! Form::select('plane', ['inner_circle' => 'Inner Circle'], 'Inner Circle', [
+                                'class'                       => 'form-control',
+                                'required'                    => 'required',
+                                'data-parsley-class-handler'  => '#product-group'
+                                ]) !!}
+                        </div>
+
                         <div class="form-group" id="cc-group">
                             {!! Form::label(null,'Credit card number:') !!}
                             {!! Form::text(null,null,[
@@ -100,7 +109,7 @@
                 var $form = $(this);
                 $form.parsley().subscribe('parsley:form:validate', function(formInstance) {
                     formInstance.submitEvent.preventDefault();
-                    alert('test');
+                  //  alert('test');
                     return false;
                 });
                 $form.find('#submitBtn').prop('disabled', true);
