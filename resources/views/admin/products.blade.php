@@ -38,8 +38,8 @@
         {!! Form::text('sku', ''); !!}
         {!! Form::textarea('description', ''); !!}
         {!! Form::number('price', ''); !!}
-        {!! Form::checkbox('active', 'yes',true); !!}
-        {!! Form::checkbox('subscribe', 'yes',true); !!}
+        {!! Form::checkbox('active', true); !!}
+        {!! Form::checkbox('subscribe', true); !!}
         {!! Form::submit('Save'); !!}
 
         {!! Form::close() !!}
