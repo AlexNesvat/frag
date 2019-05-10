@@ -25,6 +25,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('viewInnerCircle',function ($user){
+            return $user->subscribed('inner_circle') or $user->role === 'administrator';
+        });
     }
 }

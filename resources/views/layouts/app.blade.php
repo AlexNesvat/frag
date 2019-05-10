@@ -10,7 +10,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    {{--<script src="{{ asset('js/app.js') }}" defer></script>--}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -24,31 +25,57 @@
 
 <div class="wrapper">
 
-    <div class="sidebar">
-        <a href="" class="sidebar-brand"></a>
 
-        <ul class="sidebar-nav">
-            <li class="sidebar-item"><a href="/admin" class="sidebar-link"><span class="align-middle">Dashboard</span></a></li>
-            <li class="sidebar-item"><a href="/admin/products" class="sidebar-link"><span class="align-middle">Products</span></a></li>
-            <li class="sidebar-item"><a href="" class="sidebar-link"><span class="align-middle">Orders</span></a></li>
-            <li class="sidebar-item"><a href="" class="sidebar-link"><span class="align-middle">Subscriptions</span></a></li>
-            <li class="sidebar-item"><a href="" class="sidebar-link"><span class="align-middle">Customers</span></a></li>
-            <li class="sidebar-item"><a href="" class="sidebar-link"><span class="align-middle">Pages</span></a></li>
-            <li class="sidebar-item"><a href="" class="sidebar-link"><span class="align-middle">Settings</span></a></li>
-        </ul>
+    @auth
+        <div class="sidebar">
+            <a href="" class="sidebar-brand"></a>
 
-    </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-item"><a href="/admin" class="sidebar-link"><span
+                            class="align-middle">Dashboard</span></a></li>
+                <li class="sidebar-item"><a href="/admin/products" class="sidebar-link"><span class="align-middle">Products</span></a>
+                </li>
+                <li class="sidebar-item"><a href="" class="sidebar-link"><span class="align-middle">Orders</span></a>
+                </li>
+                <li class="sidebar-item"><a href="" class="sidebar-link"><span class="align-middle">Subscriptions</span></a>
+                </li>
+                <li class="sidebar-item"><a href="" class="sidebar-link"><span class="align-middle">Customers</span></a>
+                </li>
+                <li class="sidebar-item"><a href="" class="sidebar-link"><span class="align-middle">Pages</span></a>
+                </li>
+                <li class="sidebar-item"><a href="" class="sidebar-link"><span class="align-middle">Settings</span></a>
+                </li>
+            </ul>
+
+        </div>
+
+    @endauth
 
     <div class="main">
-        <nav class="navbar navbar-expand navbar-light bg-white">
-            <a href="" class="sidebar-toggle d-flex mr-2"></a>
-            <form action="" class="form-inline d-none d-sm-inline-block">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search projects" aria-label="Search">
-            </form>
-        </nav>
+        @auth
+            <nav class="navbar navbar-expand navbar-light bg-white">
+                <a href="" class="sidebar-toggle d-flex mr-2"></a>
+                <form action="" class="form-inline d-none d-sm-inline-block">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search projects" aria-label="Search">
+                </form>
+            </nav>
+        @endauth
+
+        @guest
+            <div class="alert">YOU ARE GUEST</div>
+        @endguest
         <div id="app">
+            @if(Session::has('error'))
+                <div class=”alert alert-danger”>
+                    {{Session::get('error')}}
+                </div>
+            @endif
 
             @yield('section')
+
+
+
+            @yield('content')
 
         </div>
     </div>

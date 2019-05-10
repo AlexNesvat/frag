@@ -151,6 +151,7 @@ return [
          * Package Service Providers...
          */
         Collective\Html\HtmlServiceProvider::class,
+        Laravel\Cashier\CashierServiceProvider::class,
 
         /*
          * Application Service Providers...

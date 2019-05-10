@@ -40,14 +40,14 @@ class CreateProductsTable extends Migration
             $table->foreign('attribute_id')->references('id')->on('attributes')->onDelete('cascade');
         });
 
-        Schema::create('product_attribute', function (Blueprint $table){
+        Schema::create('product_attributes', function (Blueprint $table){
             $table->increments('id');
             $table->integer('product_id')->unsigned();
             $table->integer('attribute_id')->unsigned();
             $table->integer('value_id')->unsigned();
             $table->timestamps();
         });
-        Schema::table('product_attribute', function($table) {
+        Schema::table('product_attributes', function($table) {
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('value_id')->references('id')->on('attribute_values')->onDelete('cascade');
             $table->foreign('attribute_id')->references('id')->on('attributes')->onDelete('cascade');
@@ -64,9 +64,12 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
-        Schema::dropIfExists('attributes');
+        Schema::dropIfExists('product_attributes');
         Schema::dropIfExists('attribute_values');
-        Schema::dropIfExists('product_attribute');
+        Schema::dropIfExists('attributes');
+        Schema::dropIfExists('products');
+
+
+
     }
 }
