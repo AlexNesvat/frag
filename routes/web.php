@@ -19,28 +19,19 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/inner-circle', 'HomeController@innerCircleStore')->name('inner-circle')->middleware('can:viewInnerCircle');
 
 
 Route::prefix('admin')->middleware('auth','admin')->group(function () {
-    Route::get('/', 'AdminController@index')->name('admin');
+    Route::get('/', 'AdminController@index')->name('admin.dashboard');
+//    Route::get('/login','AdminController@showLoginForm')->name('admin.login');
+//    Route::post('/login','AdminController@login')->name('admin.login.submit');
     Route::resource('products', 'ProductsController');
 });
 
-
-//
-//Route::get('/admin/products', 'ProductsController@index')->name('products');
-//Route::get('/admin/products/create', 'ProductsController@create')->name('create.product');
-////Route::get('/admin/product/create', function () {
-////    dd('fsdfsdfs');
-////    return view('admin.products');
-////});
-//Route::get('/admin/products/{id}', 'ProductsController@edit')->name('product');
-//
-//
-//Route::post('/admin/products/', 'ProductsController@store')->name('store.product');
-//Route::put('/admin/products/{id}', 'ProductsController@update')->name('edit.product');
-//
-//Route::delete('/admin/products/{id}', 'ProductsController@destroy')->name('delete.product');
+Route::prefix('account')->middleware('auth')->group(function (){
+    Route::get('/','UserAccountController@index')->name('account');
+});
 
 
 Route::get('/checkout', ['as' => 'checkout', 'uses' => 'CashierSubscriptionController@index'])->middleware('auth');
@@ -53,6 +44,3 @@ Route::post('/payment', ['as' => 'payment', 'uses' => 'CashierSubscriptionContro
 //);
 
 
-//Route::get('/admin/users', 'AdminController@users')->name('users');
-//Route::get('/admin/user/{id}', 'AdminController@user')->name('user');
-//Route::get('/admin/{any}', 'AdminController@index')->where('any', '.*');

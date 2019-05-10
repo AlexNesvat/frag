@@ -16,7 +16,7 @@ class CashierSubscriptionController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
     }
 
     public function index()
@@ -26,7 +26,8 @@ class CashierSubscriptionController extends Controller
 
     public function userPayForSubscription(Request $request)
     {
-        $user = User::find(2);
+        //$user =  Auth::user();
+        $user =  $request->user();
         $input = $request->all();
         $creditCardToken = $input['stripeToken'];
 
