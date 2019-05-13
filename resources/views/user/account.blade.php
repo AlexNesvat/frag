@@ -18,7 +18,20 @@
                     @endif
 
 
-                    this is your account!
+
+                    {{--{{dd($currentUser)}}--}}
+
+
+                        {!! Form::open(['route' => ['account.update', Auth::id()], 'method'=> 'put']) !!}
+                        {{--echo Form::model($user, array('route' => array('user.update', $user->id)))--}}
+
+                        {!! Form::text('name', $currentUser['name']); !!}
+                        {!! Form::email('email',$currentUser['email']); !!}
+
+                        {!! Form::submit('Update info',['class' =>'btn btn-primary btn-lg']); !!}
+
+                        {!! Form::close() !!}
+
 
                 </div>
             </div>

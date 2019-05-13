@@ -7,10 +7,24 @@
     <!-- SIDEBAR USER TITLE -->
     <div class="profile-usertitle">
         <div class="profile-usertitle-name">
-            Marcus Doe
+            @if(isset($currentUser))
+            {{$currentUser['name']}}
+            @endif
         </div>
         <div class="profile-usertitle-job">
-            Developer
+            @if(isset($currentUser))
+            {{$currentUser['email']}}
+            @endif
+        </div>
+        <div class="profile-usertitle-job">
+            @if(isset($currentUser))
+               Registered {{ \Carbon\Carbon::parse($currentUser['created_at'])->format('d/m/Y')}}
+            @endif
+        </div>
+        <div class="profile-usertitle-job">
+            @if(isset($currentUser))
+                {{$currentUser['role']}}
+            @endif
         </div>
     </div>
     <!-- END SIDEBAR USER TITLE -->

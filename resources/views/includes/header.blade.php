@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>Home Page</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
           integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -39,10 +42,18 @@
                 <div class="header__right">
                     <div class="header__right-info">
                         <div class="header__purse">229 points</div>
-                        <a class="header__login" href="#">Login </a><a class="header__search-icon" href="#"><img
-                                src="{{ asset('images/icon-search.png') }}" alt=""></a><a class="header__cart" href="#">
+                        @guest
+                        <a class="header__login" href="{{route('login')}}">Login </a>
+                        @else
+                            <a class="header__login" href="{{route('logout')}}">logout </a>
+                        @endif
+                        <a class="header__search-icon" href="#">
+                            <img src="{{ asset('images/icon-search.png') }}" alt="">
+                        </a>
+                        <a class="header__cart" href="#">
                             <div class="header__cart-total">$0.00</div>
-                            <img src="{{ asset('images/icon-cart.png') }}" alt=""></a>
+                            <img src="{{ asset('images/icon-cart.png') }}" alt="">
+                        </a>
                     </div>
                     <div class="header__right-banner">FREE Shipping Over $50</div>
                 </div>

@@ -37,8 +37,9 @@ class CashierSubscriptionController extends Controller
 
             $user->newSubscription($input['plane'], $plans->data[0]->id)->create($creditCardToken, [
                 'email' => $user->email,
-
             ]);
+            $user->role = 'subscriber';
+            $user->save();
             return back()->with('success', 'Subscription payment complete.');
         } catch (Exception $e) {
             return back()->with('success', $e->getMessage());
