@@ -30,7 +30,10 @@ Route::prefix('admin')->middleware('auth','admin')->group(function () {
 });
 
 Route::prefix('account')->middleware('auth')->group(function (){
-    Route::get('/','UserAccountController@index')->name('account');
+    Route::get('/','UserAccountController@showUserAccount')->name('account');
+    Route::get('/orders','UserAccountController@showUserOrders')->name('orders');
+    Route::get('/subscriptions','UserAccountController@showUserSubscriptions')->name('subscriptions');
+    Route::get('/cards','UserAccountController@showUserCards')->name('cards');
 });
 
 

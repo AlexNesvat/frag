@@ -12,24 +12,24 @@ class UserAccountController extends Controller
         // $this->middleware('auth');
     }
 
-    public function index()
+    public function showUserAccount()
     {
         return view('user.account');
     }
 
-    public function userOrders()
+    public function showUserOrders()
     {
-
+        return view('user.orders');
     }
 
-    public function userSubscriptions()
+    public function showUserSubscriptions()
     {
-
+        return view('user.subscriptions');
     }
 
-    public function userCards()
+    public function showUserCards()
     {
-
+        return view('user.cards');
     }
 
 }

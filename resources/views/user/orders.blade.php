@@ -18,7 +18,7 @@
                     @endif
 
 
-                    this is your account!
+                    this is your orders!
 
                 </div>
             </div>
