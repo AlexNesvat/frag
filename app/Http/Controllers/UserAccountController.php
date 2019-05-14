@@ -24,23 +24,26 @@ class UserAccountController extends Controller
     public function updateUserAccount(Request $request, $userId)
     {
 
-        //should be unique sku (name?)
-        $validatedData = $request->validate([
-            'name' => 'required|max:255',
-            'email' => 'required|email',
-        ]);
-
         // TODO: update customer email in stripe
         $user = User::find($userId);
+        if ($user->can('updateAccount', User::class)) {
 
-        $user->name = $validatedData['name'];
-        $user->email = $validatedData['email'];
+            //should be unique sku (name?)
+            $validatedData = $request->validate([
+                'name' => 'required|max:255',
+                'email' => 'required|email',
+            ]);
 
-        $user->save();
+
+            $user->name = $validatedData['name'];
+            $user->email = $validatedData['email'];
+
+            $user->save();
+
+        }
 
 
-
-      //  dd($user->toArray());
+        //  dd($user->toArray());
         return redirect()->route('account');
 
     }
@@ -62,14 +65,15 @@ class UserAccountController extends Controller
 
 
         //$user->asStripeCustomer();
-        return view('user.subscriptions')->with('subscriptions',$customer->subscriptions->data)->with('currentUser', Auth::user()->toArray());
+        return view('user.subscriptions')->with('subscriptions', $customer->subscriptions->data)->with('currentUser',
+            Auth::user()->toArray());
 
     }
 
     public function showUserCards()
     {
         $cards = Auth::user()->cards();
-        return view('user.cards')->with('currentUser', Auth::user()->toArray())->with('userCards',$cards->toArray());
+        return view('user.cards')->with('currentUser', Auth::user()->toArray())->with('userCards', $cards->toArray());
     }
 
     public function logout()
