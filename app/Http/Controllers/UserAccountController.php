@@ -47,6 +47,12 @@ class UserAccountController extends Controller
 
     public function showUserOrders()
     {
+        return view('user.orders');
+    }
+
+    public function showUserSubscriptions()
+    {
+
         //cards work
         //$user = Auth::user()->cards();
         $user = Auth::user();
@@ -54,18 +60,16 @@ class UserAccountController extends Controller
         Stripe::setApiKey(config('services.stripe.secret'));
         $customer = Customer::retrieve($user->stripe_id);
 
-        //$user->asStripeCustomer();
-        return view('user.orders')->with('userData',$customer);
-    }
 
-    public function showUserSubscriptions()
-    {
-        return view('user.subscriptions');
+        //$user->asStripeCustomer();
+        return view('user.subscriptions')->with('subscriptions',$customer->subscriptions->data)->with('currentUser', Auth::user()->toArray());
+
     }
 
     public function showUserCards()
     {
-        return view('user.cards');
+        $cards = Auth::user()->cards();
+        return view('user.cards')->with('currentUser', Auth::user()->toArray())->with('userCards',$cards->toArray());
     }
 
     public function logout()
