@@ -55,6 +55,12 @@ $(document).ready(function() {
 	// });
 
 
+    // $(document).on('click', '.profile-usermenu .nav li', function() {
+    //     $(".nav li").removeClass("active");
+    //     $(this).addClass("active");
+    // });
+
+
 
 	// Checkbox for discount
 	$(".product-discount input:checkbox").change(function(){

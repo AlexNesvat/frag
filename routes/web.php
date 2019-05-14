@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 
 Auth::routes();
+Route::get('/logout', 'UserAccountController@logout')->name('logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/inner-circle', 'HomeController@innerCircleStore')->name('inner-circle')->middleware('can:viewInnerCircle');
@@ -30,7 +31,11 @@ Route::prefix('admin')->middleware('auth','admin')->group(function () {
 });
 
 Route::prefix('account')->middleware('auth')->group(function (){
-    Route::get('/','UserAccountController@index')->name('account');
+    Route::get('/','UserAccountController@showUserAccount')->name('account');
+    Route::get('/orders','UserAccountController@showUserOrders')->name('orders');
+    Route::get('/subscriptions','UserAccountController@showUserSubscriptions')->name('subscriptions');
+    Route::get('/cards','UserAccountController@showUserCards')->name('cards');
+    Route::put('/update/{id}','UserAccountController@updateUserAccount')->name('account.update');
 });
 
 

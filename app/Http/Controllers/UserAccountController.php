@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Stripe\Stripe;
+use Stripe\Customer;
 
 class UserAccountController extends Controller
 {
@@ -12,24 +16,68 @@ class UserAccountController extends Controller
         // $this->middleware('auth');
     }
 
-    public function index()
+    public function showUserAccount()
     {
-        return view('user.account');
+        return view('user.account')->with('currentUser', Auth::user()->toArray());
     }
 
-    public function userOrders()
+    public function updateUserAccount(Request $request, $userId)
     {
+
+        //should be unique sku (name?)
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email',
+        ]);
+
+        // TODO: update customer email in stripe
+        $user = User::find($userId);
+
+        $user->name = $validatedData['name'];
+        $user->email = $validatedData['email'];
+
+        $user->save();
+
+
+
+      //  dd($user->toArray());
+        return redirect()->route('account');
 
     }
 
-    public function userSubscriptions()
+    public function showUserOrders()
     {
+        return view('user.orders');
+    }
+
+    public function showUserSubscriptions()
+    {
+
+        //cards work
+        //$user = Auth::user()->cards();
+        $user = Auth::user();
+
+        Stripe::setApiKey(config('services.stripe.secret'));
+        $customer = Customer::retrieve($user->stripe_id);
+
+
+        //$user->asStripeCustomer();
+        return view('user.subscriptions')->with('subscriptions',$customer->subscriptions->data)->with('currentUser', Auth::user()->toArray());
 
     }
 
-    public function userCards()
+    public function showUserCards()
     {
+        $cards = Auth::user()->cards();
+        return view('user.cards')->with('currentUser', Auth::user()->toArray())->with('userCards',$cards->toArray());
+    }
 
+    public function logout()
+    {
+        //logout user
+        auth()->logout();
+        // redirect to homepage
+        return redirect('/');
     }
 
 }

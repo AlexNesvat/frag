@@ -26,7 +26,7 @@
         </div>
         <div class="footer-payments">
             <h3 class="footer__title">Accepted Payments</h3>
-            <div class="footer-payments__img"><img src="images/img-footer-payments.png" alt=""></div>
+            <div class="footer-payments__img"><img src="{{ asset('images/img-footer-payments.png') }}" alt=""></div>
             <div class="footer-payments__copyright">
                 <p>&copy; 2018 Fragrant Jewels LLC. All Rights Reserved. | ©1976, 2018 SANRIO CO., LTD. Used Under License.</p>
             </div>
