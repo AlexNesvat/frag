@@ -24,7 +24,6 @@ class UserAccountPolicy
         if($user->role == 'administrator'){
             return true;
         }
-
     }
 
     public function updateAccount(User $user)

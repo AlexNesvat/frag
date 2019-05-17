@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Telegram\Bot\Api;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Stripe\Stripe;
@@ -18,6 +19,24 @@ class UserAccountController extends Controller
 
     public function showUserAccount()
     {
+
+
+        $telegram = new Api(env('bot_token'));
+        $response = $telegram->getMe();
+
+        $botId = $response->getId();
+        $firstName = $response->getFirstName();
+        $username = $response->getUsername();
+        $updates = $telegram->getUpdates();
+        //https://api.telegram.org/bot[token here]/getUpdates
+//        $response = $telegram->sendMessage([
+//            'chat_id' => '197991947',
+//            'text' => 'Hello World'
+//        ]);
+
+        //from id = 197991947
+       // print_r($response);
+        dd($updates);
         return view('user.account')->with('currentUser', Auth::user()->toArray());
     }
 
