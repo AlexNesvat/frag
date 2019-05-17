@@ -36,7 +36,7 @@ return [
     ],
 
     'telegram-bot-api' => [
-        'token' => env('TELEGRAM_BOT_TOKEN', '848113557:AAGbwrh16N4XRQDjs2zLVzOfPEYVfIC_Oz0')
+        'token' => env('TELEGRAM_BOT_TOKEN')
     ],
 
 
