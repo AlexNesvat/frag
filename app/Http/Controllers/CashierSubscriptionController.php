@@ -9,6 +9,7 @@ class CashierSubscriptionController extends Controller
 {
     public function userPayForSubscription()
     {
+
         $user = User::find(2);
     }
 }
