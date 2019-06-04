@@ -4,22 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class ProductAttribute
+ * @package App\Models
+ */
 class ProductAttribute extends Model
 {
 
-//    public function attribute(){
-//        return $this->belongsTo('App\Models\Product','attribute_id','id');
-//    }
-
-//    public function productAttributes() {
-//        return $this->belongsToMany('App\Models\Attributes','product_attributes','product_id','attribute_id');
-//    }
-
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function attributesValues()
     {
         return $this->hasOne('App\Models\AttributeValue','id','value_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function productAttributes()
     {
         return $this->hasOne('App\Models\Attributes','id','attribute_id');

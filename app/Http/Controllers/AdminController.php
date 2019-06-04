@@ -6,8 +6,15 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+/**
+ * Class AdminController
+ * @package App\Http\Controllers
+ */
 class AdminController extends Controller
 {
+    /**
+     * AdminController constructor.
+     */
     public function __construct()
     {
        // $this->middleware('admin');

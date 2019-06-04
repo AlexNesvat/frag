@@ -43,9 +43,4 @@ Route::get('/checkout', ['as' => 'checkout', 'uses' => 'CashierSubscriptionContr
 Route::post('/payment', ['as' => 'payment', 'uses' => 'CashierSubscriptionController@userPayForSubscription'])->middleware('auth');
 
 
-//Route::post(
-//    'stripe/webhook',
-//    '\Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook'
-//);
-
 

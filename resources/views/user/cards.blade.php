@@ -18,7 +18,6 @@
                     @endif
 
                         @if($userCards)
-                            {{--{{dd($userCards)}}--}}
 
                                 <table class="table table-striped table-dark">
                                     <thead>
@@ -35,7 +34,6 @@
                                     <tbody>
                                     @php ($i = 1)
                                     @foreach($userCards as $card)
-                                        {{--{{dd($card->country)}}--}}
                                         <tr>
                                             <th scope="row">{{$i}}</th>
                                             <td>{{$card->brand}}</td>

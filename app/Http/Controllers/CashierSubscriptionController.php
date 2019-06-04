@@ -9,6 +9,10 @@ use App\Models\User;
 use Illuminate\Http\Request;
 
 
+/**
+ * Class CashierSubscriptionController
+ * @package App\Http\Controllers
+ */
 class CashierSubscriptionController extends Controller
 {
     /**
@@ -19,15 +23,22 @@ class CashierSubscriptionController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         return view('checkout');
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function userPayForSubscription(Request $request)
     {
         //$user =  Auth::user();
-        $user =  $request->user();
+        $user = $request->user();
         $input = $request->all();
         $creditCardToken = $input['stripeToken'];
 
@@ -46,27 +57,4 @@ class CashierSubscriptionController extends Controller
         }
     }
 
-
-    //$user->subscription('inner_circle')->cancel();
-
-//    if ($user->subscription('main')->onGracePeriod()) {
-//    //
-//}
-//if ($user->subscription('main')->cancelled()) {
-//    //
-//}
-//  if ($request->user() && ! $request->user()->subscribed('main')) {
-//        // This user is not a paying customer...
-//        return redirect('billing');
-//    }
-//$user->subscription('main')->resume();
-
-
-//// Stripe принимает сумму в центах...
-//$user->charge(100);
-//
-//// Braintree принимает сумму в долларах...
-//$user->charge(1);
-//// Stripe принимает сумму в центах...
-//$user->invoiceFor('One Time Fee', 500);
 }

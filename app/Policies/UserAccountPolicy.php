@@ -5,6 +5,10 @@ namespace App\Policies;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
+/**
+ * Class UserAccountPolicy
+ * @package App\Policies
+ */
 class UserAccountPolicy
 {
     use HandlesAuthorization;
@@ -19,6 +23,11 @@ class UserAccountPolicy
         //
     }
 
+    /**
+     * @param $user
+     * @param $ability
+     * @return bool
+     */
     public function before($user, $ability)
     {
         if($user->role == 'administrator'){
@@ -26,6 +35,10 @@ class UserAccountPolicy
         }
     }
 
+    /**
+     * @param User $user
+     * @return bool
+     */
     public function updateAccount(User $user)
     {
         return $user->role == 'subscriber';
