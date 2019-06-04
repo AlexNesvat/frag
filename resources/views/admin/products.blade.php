@@ -21,7 +21,6 @@
         </table>
 
         {{--{{ $products->render() }}--}}
-        {{--{{ dd($products) }}--}}
         <ul>
             <li><a href="{{ $products['prev_page_url'] }}">prev</a></li>
             <li><a href="{{ $products['next_page_url'] }}">next</a></li>
@@ -47,14 +46,12 @@
 
 
     @if(isset($product_detail))
-        {{--        {{dd($product_detail)}}--}}
 
         <ul>
             {{--@foreach($product_detail as $key => $attribute)--}}
             {{--<li>{{$key}} - {{$attribute}}</li>--}}
             {{--@endforeach--}}
         </ul>
-        {{--access $product_detail via key--}}
         {!! Form::open(['route' => ['products.update', $product_detail['id']],'method' => 'put' ]) !!}
         {{-- @method('PUT')--}}
         {{-- @csrf--}}

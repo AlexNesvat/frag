@@ -28,8 +28,6 @@ class CreateProductRequest extends FormRequest
             'sku' => 'required|min:5|max:25',
             'description' => 'required',
             'price' => 'required',
-//            'active' => 'required',
-//            'subscribe' => 'required',
         ];
     }
 }
