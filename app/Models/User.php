@@ -14,12 +14,18 @@ class User extends Authenticatable
     use Billable;
 
     /**
+     * @var array
+     */
+    protected $dates = [
+        'trial_ends_at', 'subscription_ends_at'
+    ];
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'role',
     ];
 
     /**

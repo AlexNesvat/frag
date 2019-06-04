@@ -16,7 +16,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $all_products = Product::paginate(5)->toArray();
+        $all_products = Product::paginate(15)->toArray();
         return view('admin.products')->with('products',$all_products);
     }
 
@@ -46,8 +46,9 @@ class ProductsController extends Controller
 //            'price' => 'required',
 //        ]);
 
-      //  dd($request);
-        Product::create($request->all());
+       // dd($request->all());
+   Product::create($request->all());
+
 
      //   $product = new Product;
 
@@ -58,9 +59,9 @@ class ProductsController extends Controller
 //        $product->active = $request->get('active') ? true : false;
 //        $product->subscribe = $request->get('subscribe') ? true : false;
 //
-//        $product->save();
 
-        return redirect()->route('products');
+
+        return redirect()->route('products.index');
 
     }
 
@@ -141,7 +142,8 @@ class ProductsController extends Controller
      */
     public function destroy(Product $product)
     {
-        dd('delete route');
-        return redirect()->route('products');
+      //  dd($product);
+        $product->delete();
+        return redirect()->route('products.index');
     }
 }
